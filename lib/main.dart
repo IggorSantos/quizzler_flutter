@@ -30,6 +30,27 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List <Icon> scoreKeeper = [];
 
+void checkAnswer(bool userAnswer){
+  if(quizBrain.getAnswer() == userAnswer){
+    scoreKeeper.add(
+      Icon(
+        Icons.check,
+      ),
+    );
+    print("Acertou");
+  }else{
+    scoreKeeper.add(
+      Icon(
+        Icons.error,
+      ),
+    );
+    print("Errou");
+  }
+  setState(() {
+    quizBrain.nextQuestion();
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +88,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                if(quizBrain.getAnswer() == true){
-                  print("Acertou");
-                }else{
-                  print("Errou");
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -92,14 +106,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-              if(quizBrain.getAnswer() == false){
-                print("Acertou");
-              }else{
-                print("Errou");
-              }
-              setState(() {
-                quizBrain.nextQuestion();
-              });
+                checkAnswer(false);
               },
             ),
           ),
