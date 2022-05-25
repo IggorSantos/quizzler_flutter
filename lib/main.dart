@@ -35,16 +35,16 @@ void checkAnswer(bool userAnswer){
     scoreKeeper.add(
       Icon(
         Icons.check,
+        color: Colors.green,
       ),
     );
-    print("Acertou");
   }else{
     scoreKeeper.add(
       Icon(
-        Icons.error,
+        Icons.close,
+        color: Colors.red,
       ),
     );
-    print("Errou");
   }
   setState(() {
     quizBrain.nextQuestion();
